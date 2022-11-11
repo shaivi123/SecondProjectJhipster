@@ -35,6 +35,7 @@ export const Node = (props: INodeProps) => {
                 <th>ID</th>
                 <th>Parent</th>
                 <th>Name</th>
+                <th>Designation</th>
                 <th />
               </tr>
             </thead>
@@ -48,6 +49,7 @@ export const Node = (props: INodeProps) => {
                   </td>
                   <td>{node.parent}</td>
                   <td>{node.name}</td>
+                  <td>{node.designation}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${node.id}`} color="info" size="sm">

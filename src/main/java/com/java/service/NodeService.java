@@ -1,7 +1,6 @@
 package com.java.service;
 
 import com.java.domain.Node;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,11 +41,7 @@ public interface NodeService {
      */
     void delete(Long id);
 
-    @Transactional(readOnly = true)
-    List<Node> getSecondProject(String parent);
+    List<Node> getAllByDesignation(String designation);
 
-    List<Node> getDataByName(String name);
-
-//    @Transactional(readOnly = true)
-//    List<Node> getChildren(String parent);
+    Optional<Node> findDesignationById(Long id);
 }

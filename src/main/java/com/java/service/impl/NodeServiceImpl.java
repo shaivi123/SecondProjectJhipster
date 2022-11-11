@@ -77,18 +77,17 @@ public class NodeServiceImpl implements NodeService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<Node> getSecondProject(String parent) {
-        log.debug("Request to get all Nodes");
-        List<Node> result =nodeRepository.findAllByParent(parent);
+    public List<Node> getAllByDesignation(String designation) {
+        log.debug("Request to delete Node : {}", designation);
+        List<Node> result=nodeRepository.findAllByDesignation(designation);
         return result;
     }
 
     @Override
-    public List<Node> getDataByName(String name) {
-        log.debug("Request to get all Nodes");
-        List<Node> result=nodeRepository.findAllByName(name);
-        return result;
+    public Optional<Node> findDesignationById(Long id) {
+      log.debug("Request to delete Node : {}",id);
+     return nodeRepository.findDesignationById(id);
     }
+
 
 }

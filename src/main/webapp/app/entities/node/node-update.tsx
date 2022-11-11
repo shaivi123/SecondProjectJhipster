@@ -83,6 +83,12 @@ export const NodeUpdate = (props: INodeUpdateProps) => {
                 </Label>
                 <AvField id="node-name" type="text" name="name" />
               </AvGroup>
+              <AvGroup>
+                <Label id="designationLabel" for="node-designation">
+                  Designation
+                </Label>
+                <AvField id="node-designation" type="text" name="designation" />
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/node" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

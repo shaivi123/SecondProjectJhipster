@@ -5,6 +5,7 @@ import com.java.service.NodeService;
 import com.java.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -95,18 +96,12 @@ public class NodeResource {
      *
      * @param id the id of the node to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the node, or with status {@code 404 (Not Found)}.
-     * here i'm edited
      */
-    @GetMapping("/nodes/secondProject/{parent}")
-    public ResponseEntity<List<Node>> getSecondProject(@PathVariable String parent) {
-        log.debug("REST request to get Node : {}", parent);
-        List<Node> node = nodeService.getSecondProject(parent);
-        //return ResponseUtil.wrapOrNotFound(node);
-      return Optional.ofNullable(node)
-          .map(result -> new ResponseEntity<>(
-              result,
-              HttpStatus.OK))
-          .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/nodes/{id}")
+    public ResponseEntity<Node> getNode(@PathVariable Long id) {
+        log.debug("REST request to get Node : {}", id);
+        Optional<Node> node = nodeService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(node);
     }
 
     /**
@@ -121,15 +116,20 @@ public class NodeResource {
         nodeService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
-
-    @GetMapping("/nodes/dataByName/{name}")
-    public ResponseEntity<List<Node>> getDataByName(@PathVariable String name){
-        log.debug("REST request to get Node : {}", name);
-        List<Node> node = nodeService.getDataByName(name);
+    @GetMapping("/nodes/allDesignation/{designation}")
+    public ResponseEntity<List<Node>> getAllByDesignation(@PathVariable String designation){
+        log.debug("REST request to get Node : {}", designation);
+        List<Node> node = nodeService.getAllByDesignation(designation);
         return Optional.ofNullable(node)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @GetMapping("/nodes/designation/{id}")
+    public ResponseEntity<Node> getDesignationById(@PathVariable Long id){
+        log.debug("REST request to get Node : {}",id);
+        nodeService.findDesignationById(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName,false,ENTITY_NAME,id.toString())).build();
     }
 }

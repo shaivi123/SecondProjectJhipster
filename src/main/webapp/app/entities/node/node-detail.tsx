@@ -33,6 +33,10 @@ export const NodeDetail = (props: INodeDetailProps) => {
             <span id="name">Name</span>
           </dt>
           <dd>{nodeEntity.name}</dd>
+          <dt>
+            <span id="designation">Designation</span>
+          </dt>
+          <dd>{nodeEntity.designation}</dd>
         </dl>
         <Button tag={Link} to="/node" replace color="info">
           <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>

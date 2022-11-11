@@ -23,6 +23,9 @@ public class Node implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "designation")
+    private String designation;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -57,6 +60,19 @@ public class Node implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public Node designation(String designation) {
+        this.designation = designation;
+        return this;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -81,6 +97,7 @@ public class Node implements Serializable {
             "id=" + getId() +
             ", parent='" + getParent() + "'" +
             ", name='" + getName() + "'" +
+            ", designation='" + getDesignation() + "'" +
             "}";
     }
 }
